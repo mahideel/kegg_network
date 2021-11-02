@@ -1,3 +1,21 @@
+import numpy as np
+import pandas as pd
+import requests
+import re
+import sys
+import matplotlib.pyplot as plt
+import PIL
+from PIL import Image
+import io
+import urllib.request
+import itertools
+import networkx as nx
+
+# to display dataframe at full length
+# will need to adjust width and number of max columns accordingly
+desired_width=320
+pd.set_option('display.width', desired_width)
+pd.set_option('display.max_columns',20)
 
 # function to download info from KEGG Rest API and pre-process info to prep them for adma creation
 def krest(keggid):
