@@ -1,5 +1,8 @@
 # kegg_network
-This is a script containing all the functions I wrote to 
+It is a repository for all scripts / functions relating to my work in KEGG network
+
+# network.py
+This is script containing all the functions I wrote to 
 1. download information from KEGG Rest API
 2. use the information to create an adjacent matrix (adma)
 3. create and visualise network from adma 
