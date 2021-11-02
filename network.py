@@ -117,8 +117,14 @@ def krest(keggid):
     return (A_df, G)
 
 
-# function to determine nodes degree and centrality
 def nodes_degree(df):
+    """
+    Determine nodes degree and centrality
+    Args:
+        df: dataframe of adjacent matrix
+    Returns:
+        nodes_degree_df: dataframe of the nodes degree summary
+    """
     G = nx.from_pandas_adjacency(df)
     d1 = dict(G.degree())
     centrality_degree = nx.degree_centrality(G)
@@ -132,8 +138,15 @@ def nodes_degree(df):
     return nodes_degree_df
 
 
-# function to work out the summary statistics of the nodes degree and/or centrality
-def nodes_deg_summ(G):
+def network_deg_summ(df):
+    """
+    Determine nodes degree and centrality
+    Args:
+        df: dataframe of adjacent matrix
+    Returns:
+        summary_df: dataframe of the node degree summary for the entire network
+    """
+    G = nx.from_pandas_adjacency(df)
     total_nodes = len(G)
     degree_values = dict(G.degree()).values()
     ave_degree = sum(d_values)/total_nodes
