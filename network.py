@@ -49,6 +49,8 @@ def krest(keggid):
             if line.startswith('EQUATION '):
                 eql.append(line)
 
+    #return eql
+
     # splitting eql to substrate and product
     subs_l = []
     prod_l = []
@@ -59,26 +61,23 @@ def krest(keggid):
         prod_l.append(prod)
 
    # picking the compound id
-    subs_cpd = []
     # setting a regex pattern for compound id
     patt = re.compile(r"\b\w{6}\b")
-
+    subs_cpd = []
     for i in range(len(subs_l)):
         cpd1 = patt.findall(subs_l[i])
-    subs_cpd.append(cpd1)
+        subs_cpd.append(cpd1)
 
     prod_cpd = []
     for i in range(len(prod_l)):
         cpd2 = patt.findall(prod_l[i])
         prod_cpd.append(cpd2)
 
-    return (eql), (subs_cpd), (prod_cpd)
-
+    #return (eql, subs_cpd, prod_cpd)
 
 
 # function to create adjacent matrix (adma)
 # merging subs and prod compounds for each reaction
-def create_adma(eql, subs_cpd, prod_cpd):
     rnl = []
     for i in range(len(eql)):
         rn = subs_cpd[i] + prod_cpd[i]
@@ -89,6 +88,7 @@ def create_adma(eql, subs_cpd, prod_cpd):
     # creating enzyme unit matrix - if necessary
     eu = ['e{}'.format(j) for j in range(len(rnl))]
     # creating unique compound list for matrix construction
+
     unl = []
     for i in range(len(rnl)):
         unl.extend(rnl[i])
