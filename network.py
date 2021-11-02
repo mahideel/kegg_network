@@ -22,7 +22,7 @@ def krest(keggid):
     """
     Download info from KEGG Rest API Module, process the info and create adjacent matrix from the info
     Args:
-        keggid: Kegg ID of a Module in KEGG
+        keggid: Kegg ID of a Module in KEGG - must be string, eg. "M00087"
     Returns:
         A_df: dataframe of the adjacent matrix
         G: networkx object of the adjacent matrix
