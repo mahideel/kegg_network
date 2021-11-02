@@ -17,8 +17,15 @@ desired_width=320
 pd.set_option('display.width', desired_width)
 pd.set_option('display.max_columns',20)
 
-# function to download info from KEGG Rest API and pre-process info to prep them for adma creation
 def krest(keggid):
+    """
+    Download info from KEGG Rest API Module, process the info and create adjacent matrix from the info
+    Args:
+        keggid: Kegg ID of a Module in KEGG
+    Returns:
+        A_df: dataframe of the adjacent matrix
+        G: networkx object of the adjacent matrix
+    """
     # downloading the info from KEGG Rest API
     r = requests.get("http://rest.kegg.jp/link/rn/" + keggid)
     r2 = " ".join(r.text.split('\n'))
@@ -49,8 +56,6 @@ def krest(keggid):
             if line.startswith('EQUATION '):
                 eql.append(line)
 
-    #return eql
-
     # splitting eql to substrate and product
     subs_l = []
     prod_l = []
@@ -73,22 +78,16 @@ def krest(keggid):
         cpd2 = patt.findall(prod_l[i])
         prod_cpd.append(cpd2)
 
-    #return (eql, subs_cpd, prod_cpd)
-
-
-# function to create adjacent matrix (adma)
-# merging subs and prod compounds for each reaction
+    # merging subs and prod compounds for each reaction
     rnl = []
     for i in range(len(eql)):
         rn = subs_cpd[i] + prod_cpd[i]
         rnl.append(rn)
 
-    #return (rnl)
-
     # creating enzyme unit matrix - if necessary
     eu = ['e{}'.format(j) for j in range(len(rnl))]
-    # creating unique compound list for matrix construction
 
+    # creating unique compound list for matrix construction
     unl = []
     for i in range(len(rnl)):
         unl.extend(rnl[i])
@@ -112,7 +111,10 @@ def krest(keggid):
             b = eu[i]
             A_df.loc[a, b] = 1
             A_df.loc[b, a] = 1
-    return A_df
+
+    # convert adma to networkx object
+    G = nx.from_pandas_adjacency(A_df)
+    return (A_df, G)
 
 
 # function to determine nodes degree and centrality
