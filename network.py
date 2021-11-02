@@ -10,6 +10,7 @@ import io
 import urllib.request
 import itertools
 import networkx as nx
+import scipy
 
 # to display dataframe at full length
 # will need to adjust width and number of max columns accordingly
