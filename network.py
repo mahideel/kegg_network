@@ -116,7 +116,8 @@ def krest(keggid):
 
 
 # function to determine nodes degree and centrality
-def nodes_degree(G):
+def nodes_degree(df):
+    G = nx.from_pandas_adjacency(df)
     d1 = dict(G.degree())
     centrality_degree = nx.degree_centrality(G)
     d2 = centrality_degree
