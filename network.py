@@ -25,7 +25,7 @@ def krest(keggid):
         keggid: Kegg ID of a Module in KEGG - must be string, eg. "M00087"
     Returns:
         A_df: dataframe of the adjacent matrix
-        G: networkx object of the adjacent matrix
+        G: networkx object of the adjacent matrix which later on can be used to draw a network graph. 
     """
     # downloading the info from KEGG Rest API
     r = requests.get("http://rest.kegg.jp/link/rn/" + keggid)
