@@ -21,7 +21,7 @@ def krest(keggid):
         G: networkx object of the adjacent matrix which later on can be used to draw a network graph. 
     """
     # downloading the info from KEGG Rest API
-    r = requests.get("http://rest.kegg.jp/link/rn/" + keggid)
+    r = requests.get("https://rest.kegg.jp/link/rn/" + keggid)
     r2 = " ".join(r.text.split('\n'))
     r3 = re.split(r'(\t+)', r2)
 
@@ -43,7 +43,7 @@ def krest(keggid):
     # grabbing chemical equation from reaction list and putting them into equation list (eql)
     eql = []
     for i in range(len(result)):
-        url = "http://rest.kegg.jp/get/" + result[i]
+        url = "https://rest.kegg.jp/get/" + result[i]
         with requests.get(url) as file:
             lines = file.text.split('\n')
         for line in lines:
