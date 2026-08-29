@@ -1,9 +1,14 @@
-# kegg_network
-It is a repository for all scripts / functions relating to my work in KEGG network
+# KEGG Network Analysis
 
-# network.py
-This is script containing all the functions I wrote to 
-1. download information from KEGG Rest API
-2. use the information to create an adjacent matrix (adma)
-3. create and visualise network from adma 
-4. obtain network summary
+Python utilities for retrieving reaction information from the KEGG REST API and representing metabolic modules as networks.
+
+The functions in this repository were developed for exploratory pathway and network analysis in biomedical research.
+
+## What it does
+
+- retrieves reactions associated with a KEGG module
+- extracts compounds from reaction equations
+- constructs a compound–reaction adjacency matrix
+- converts the matrix to a NetworkX graph
+- calculates node degree and degree centrality
+- summarises degree characteristics across the network
