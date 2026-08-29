@@ -54,9 +54,9 @@ def krest(keggid):
     subs_l = []
     prod_l = []
     for i in range(len(eql)):
-        subs = (eql[i].split('<='))[0]
+        subs = (eql[i].split('<=>'))[0]
         subs_l.append(subs)
-        prod = (eql[i].split('<='))[1]
+        prod = (eql[i].split('<=>'))[1]
         prod_l.append(prod)
 
    # picking the compound id
