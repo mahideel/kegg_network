@@ -142,19 +142,22 @@ def network_deg_summ(df):
     """
     G = nx.from_pandas_adjacency(df)
     total_nodes = len(G)
-    degree_values = dict(G.degree()).values()
-    ave_degree = sum(d_values)/total_nodes
-    sd_degree = np.std(d_values)
-    med_degree = np.median(d_values)
-    range_degree = np.max(d_values, axis=0) - np.min(d_values, axis=0)
-    q3, q1 = np.percentile(d_values, [75 ,25])
+    degree_values = list(dict(G.degree()).values())
+
+    ave_degree = sum(degree_values) / total_nodes
+    sd_degree = np.std(degree_values)
+    med_degree = np.median(degree_values)
+    range_degree = np.max(degree_values) - np.min(degree_values)
+    q3, q1 = np.percentile(degree_values, [75, 25])
     iqr_degree = q3 - q1
-    cent_degree = nx.degree_centrality(G)
-    data = {'average degree': [ave_degree],
-            'std dev degree': [sd_degree],
-            'median degree': [med_degree],
-            'range degree': [range_degree],
-            'IQR degree': [iqr_degree]}
+
+    data = {
+        'average degree': [ave_degree],
+        'std dev degree': [sd_degree],
+        'median degree': [med_degree],
+        'range degree': [range_degree],
+        'IQR degree': [iqr_degree]
+    }
+
     summary_df = pd.DataFrame(data)
     return summary_df
-
