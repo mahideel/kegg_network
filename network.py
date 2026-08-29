@@ -1,16 +1,9 @@
+import re
+
+import networkx as nx
 import numpy as np
 import pandas as pd
 import requests
-import re
-import sys
-import matplotlib.pyplot as plt
-import PIL
-from PIL import Image
-import io
-import urllib.request
-import itertools
-import networkx as nx
-import scipy
 
 # to display dataframe at full length
 # will need to adjust width and number of max columns accordingly
